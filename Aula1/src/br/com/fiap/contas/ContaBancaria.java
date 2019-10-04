@@ -1,10 +1,11 @@
 package br.com.fiap.contas;
 
-public class ContaBancaria {
+public abstract class ContaBancaria implements ContasInterface {
 	
 	private String titular;
 	private Double saldo = 0.0;
 	private Integer numero;
+	private String tipo;
 	
 	public ContaBancaria(String titular) {
 		this.titular = titular;
@@ -31,5 +32,10 @@ public class ContaBancaria {
 	}
 	public void setNumero(Integer numero) {
 		this.numero = numero;
+	}
+	public abstract String getTipo();
+	
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 }

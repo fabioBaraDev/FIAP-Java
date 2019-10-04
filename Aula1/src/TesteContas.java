@@ -1,24 +1,62 @@
-import java.awt.List;
+
 import java.util.ArrayList;
 
 import br.com.fiap.contas.ContaBancaria;
+import br.com.fiap.contas.ContaCorrente;
+import br.com.fiap.contas.ContaPoupanca;
+import br.com.fiap.contas.ContasInterface;
 
 public class TesteContas {
 	public static void main(String[] args) {
 		
-		ArrayList<ContaBancaria> contas = new ArrayList<ContaBancaria>(); 
+		TesteContas teste = new TesteContas();
+		teste.contasCC();
+		teste.contasPoup();
 
-		contas.add(new ContaBancaria("Joao"));
-		contas.add(new ContaBancaria("Maria"));
-		contas.add(new ContaBancaria("Joaquina"));
-		contas.add(new ContaBancaria("Tiazinha"));
-		contas.add(new ContaBancaria("Romulo"));
+	}
+
+	public void contasCC() {
 		
+		System.out.println("****** Teste Corrente ********");
+		ArrayList<ContasInterface> contas = new ArrayList<ContasInterface>(); 
+
+		contas.add(new ContaCorrente("Joao"));
+		contas.add(new ContaCorrente("Maria"));
+		contas.add(new ContaCorrente("Joaquina"));
+		contas.add(new ContaCorrente("Tiazinha"));
+		contas.add(new ContaCorrente("Romulo"));
 		
-		contas.forEach(x -> {x.depositar(Math.random() * 100); 
-							 x.saque(Math.random() * 100);
-							System.out.println("Saldo de " + x.getTitular() + " é -> " + x.getSaldo());});
-		
+		loopDeContas(contas);
 		
 	}
+	
+
+	public void contasPoup() {
+		
+		System.out.println("****** Teste Poupança ********");
+		ArrayList<ContasInterface> contas = new ArrayList<ContasInterface>(); 
+
+		contas.add(new ContaPoupanca("Joao"));
+		contas.add(new ContaPoupanca("Maria"));
+		contas.add(new ContaPoupanca("Joaquina"));
+		contas.add(new ContaPoupanca("Tiazinha"));
+		contas.add(new ContaPoupanca("Romulo"));
+		
+		loopDeContas(contas);
+	
+	}
+	private void loopDeContas(ArrayList<ContasInterface> contas) {
+		
+		contas.forEach(x -> {x.depositar(Math.random() * 100);
+		 			   System.out.println(x.getTitular() + " tem o tipo de Conta " + x.getTipo() + " com o saldo de -> " + x.getSaldo());});
+
+		System.out.println("*********************************************************");
+
+		//Saquei 
+		contas.forEach(x -> {x.saque(1.0);
+		 			   System.out.println(x.getTitular() + " tem o tipo de Conta " + x.getTipo() + " com o saldo de -> " + x.getSaldo());});
+
+	}
+	
+
 }
