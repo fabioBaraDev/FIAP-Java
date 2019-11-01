@@ -13,11 +13,14 @@ public class TesteErro {
 
 	public static void main(String[] args) {
 
+		JFrame frame = new JFrame("Painel Padrão");
 		try {			
-			metodo3();
-			System.out.println("epa");
+			Double resposta = metodo3();
+			
+			JOptionPane.showMessageDialog(frame, "Seu saldo atualizado é:\n\n " + resposta,
+					"Saldo Disponivel\n\n", JOptionPane.INFORMATION_MESSAGE);
+			
 		} catch (SaldosInsuficiente e) {
-			JFrame frame = new JFrame("JOptionPane exemplo");
 
 			JOptionPane.showMessageDialog(frame, "Houve um problema Champs:\n\n " + e.getMessage(),
 					"Saldo Insuficiente\n\n", JOptionPane.INFORMATION_MESSAGE);
@@ -55,14 +58,14 @@ public class TesteErro {
 		System.out.println("fim do metodo 2!");
 	}
 
-	static void metodo3() throws SaldosInsuficiente {
+	static Double metodo3() throws SaldosInsuficiente {
 
 		ContaCorrente cc = new ContaCorrente("Bara", LocalDate.of(1986, Month.JULY, 28));
 		Double valor = Double.valueOf(JOptionPane.showInputDialog("valor do deposito"));
 		cc.depositar(valor);
 
-		Double valorSaque = Double.valueOf(JOptionPane.showInputDialog("valor do saque"));
-		cc.saque(valorSaque);
+		Double valorSaque = Double.valueOf(JOptionPane.showInputDialog("valor do saque\n\n" + "ATENÇÃO -- Lhe será cobrado uma taxa de 0.10 centavos!"));
+		return cc.saque(valorSaque);
 
 	}
 }
