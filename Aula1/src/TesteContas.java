@@ -1,7 +1,6 @@
 
 import java.util.ArrayList;
 
-import br.com.fiap.contas.ContaBancaria;
 import br.com.fiap.contas.ContaCorrente;
 import br.com.fiap.contas.ContaPoupanca;
 import br.com.fiap.contas.ContasInterface;
